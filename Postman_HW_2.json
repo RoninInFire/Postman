@@ -211,16 +211,34 @@
 							"console.log(\"Family: \", resp_u_family)\r",
 							"\r",
 							"// 9. Проверить, что у параметра dog есть параметры name.\r",
+							"var resp_dog_params = [jsonData.family.pets.dog];\r",
+							"pm.test(\"dog_name_params_check\", function() {\r",
+							"    resp_dog_params.includes(\"name\");\r",
+							"});\r",
 							"\r",
+							"var resp_dog = jsonData.family.pets.dog;\r",
+							"console.log(\"dog: \", resp_dog);\r",
 							"\r",
 							"// 10. Проверить, что у параметра dog есть параметры age.\r",
-							"\r",
+							"pm.test(\"dog_age_params_check\", function() {\r",
+							"    resp_dog_params.includes(\"age\");\r",
+							"});\r",
 							"\r",
 							"// 11. Проверить, что параметр name имеет значение Luky.\r",
+							"var resp_dog_name = resp_dog.name;\r",
+							"pm.test(\"dog_name_value_check\", function() {\r",
+							"    pm.expect(resp_dog_name).to.eql(\"Luky\");\r",
+							"});\r",
 							"\r",
+							"console.log(\"dog_name: \", resp_dog_name);\r",
 							"\r",
 							"// 12. Проверить, что параметр age имеет значение 4.\r",
-							""
+							"var resp_dog_age = resp_dog.age;\r",
+							"pm.test(\"dog_age_value_check\", function() {\r",
+							"    pm.expect(resp_dog_age).to.eql(4);\r",
+							"});\r",
+							"\r",
+							"console.log(\"dog_age: \", resp_dog_age);"
 						],
 						"type": "text/javascript"
 					}
@@ -249,6 +267,42 @@
 						{
 							"key": "age",
 							"value": "26"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/object_info_4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_4?age=26&salary=1200&name=Rustam",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "26"
+						},
+						{
+							"key": "salary",
+							"value": "1200"
+						},
+						{
+							"key": "name",
+							"value": "Rustam"
 						}
 					]
 				}
