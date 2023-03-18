@@ -28,15 +28,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://162.55.220.72:5005/first",
-					"protocol": "http",
+					"raw": "{{url}}/first",
 					"host": [
-						"162",
-						"55",
-						"220",
-						"72"
+						"{{url}}"
 					],
-					"port": "5005",
 					"path": [
 						"first"
 					]
@@ -322,16 +317,32 @@
 							"console.log(resp_salary);\r",
 							"\r",
 							"// 9. Вывести в консоль 0-й элемент параметра salary из response.\r",
+							"var resp_salary_elements = jsonData.salary;\r",
+							"\r",
+							"console.log(resp_salary_elements[0]);\r",
 							"\r",
 							"// 10. Вывести в консоль 1-й элемент параметра salary параметр salary из response.\r",
+							"console.log(resp_salary_elements[1]);\r",
 							"\r",
 							"// 11. Вывести в консоль 2-й элемент параметра salary параметр salary из response.\r",
+							"console.log(resp_salary_elements[2]);\r",
 							"\r",
 							"// 12. Проверить, что 0-й элемент параметра salary равен salary из request (salary забрать из request.)\r",
+							"pm.test(\"req_salary == resp_salary[0] check\", function () {\r",
+							"    pm.expect(req_salary).to.eql(resp_salary_elements[0]);\r",
+							"});\r",
 							"\r",
 							"// 13. Проверить, что 1-й элемент параметра salary равен salary*2 из request (salary забрать из request.)\r",
+							"var resp_salary_element_1 = +jsonData.salary[1];\r",
+							"pm.test(\"req_salary*2 == resp_salary[1] check\", function () {\r",
+							"    pm.expect(req_salary * 2).to.eql(resp_salary_element_1);\r",
+							"});\r",
 							"\r",
 							"// 14. Проверить, что 2-й элемент параметра salary равен salary*3 из request (salary забрать из request.)\r",
+							"var resp_salary_element_2 = +jsonData.salary[2];\r",
+							"pm.test(\"req_salary*3 == resp_salary[2] check\", function () {\r",
+							"    pm.expect(req_salary * 3).to.eql(resp_salary_element_2);\r",
+							"});\r",
 							"\r",
 							"// 15. Создать в окружении переменную name\r",
 							"\r",
@@ -345,7 +356,10 @@
 							"\r",
 							"// 20. Передать в окружение переменную salary\r",
 							"\r",
-							"// 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary."
+							"// 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.\r",
+							"for(var i = 0; i < resp_salary.length; i += 1) {\r",
+							"    console.log(i, resp_salary[i]);\r",
+							"};"
 						],
 						"type": "text/javascript"
 					}
@@ -355,15 +369,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://162.55.220.72:5005/object_info_4?age=26&salary=1200&name=Rustam",
-					"protocol": "http",
+					"raw": "{{url}}/object_info_4?age=26&salary=1200&name=Rustam",
 					"host": [
-						"162",
-						"55",
-						"220",
-						"72"
+						"{{url}}"
 					],
-					"port": "5005",
 					"path": [
 						"object_info_4"
 					],
